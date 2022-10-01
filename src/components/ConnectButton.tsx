@@ -1,48 +1,49 @@
 // ConnectButton.tsx
 import React from 'react'
-import { Button, Box, Text } from '@chakra-ui/react'
-import { useEthers, useEtherBalance } from '@usedapp/core'
+import { Button, Flex, Text } from '@chakra-ui/react'
+import { useEthers, Mainnet, useEtherBalance, useTokenBalance } from '@usedapp/core'
 import { utils } from 'ethers'
 
 import Identicon from './Identicon'
+
+const nexoAddress = '0xb62132e35a6c13ee1ee0f84dc5d40bad8d815206'
 
 interface Props {
   handleOpenModal: () => void
 }
 
 export default function ConnectButton ({ handleOpenModal }: Props): JSX.Element {
-  const { activateBrowserWallet, account } = useEthers()
+  const { activateBrowserWallet, account, chainId } = useEthers()
   const etherBalance = useEtherBalance(account)
+  const tokenBalance = useTokenBalance(nexoAddress, account)
+  const mainCurrency = chainId === Mainnet.chainId ? 'ETH' : 'BNB'
 
   return account
-    ? (<Box
-        display="flex"
-        alignItems="center"
-        background="gray.700"
-        borderRadius="xl"
-        py="0"
-       >
-        <Box px="3">
-          <Text color="white" fontSize="md">
-            {(etherBalance != null) && `Ether balance: ${parseFloat(utils.formatEther(etherBalance)).toFixed(3)} ETH`}
+    ? (<Flex alignSelf='end' alignItems='center' background='gray.700' borderRadius='xl' position='fixed' top='0' py='0' m='10'>
+        <Flex px='3'>
+          <Text color='white' fontSize='md' mr='2'>
+            {(tokenBalance != null) && `${parseFloat(utils.formatEther(tokenBalance)).toFixed(2)} NEXO`}
           </Text>
-        </Box>
+          <Text color='white' fontSize='md'>
+            {(etherBalance != null) && `${parseFloat(utils.formatEther(etherBalance)).toFixed(3)} ${mainCurrency}`}
+          </Text>
+        </Flex>
          <Button
           onClick={handleOpenModal}
-          bg="gray.800"
-          border="1px solid transparent"
+          bg='gray.800'
+          border='1px solid transparent'
           _hover={{
             border: '1px',
             borderStyle: 'solid',
             borderColor: 'blue.400',
             backgroundColor: 'gray.700'
           }}
-          borderRadius="xl"
-          m="1px"
+          borderRadius='xl'
+          m='1px'
           px={3}
-          height="38px"
+          height='38px'
         >
-          <Text color="white" fontSize="md" fontWeight="medium" mr="2">
+          <Text color='white' fontSize='md' fontWeight='medium' mr='2'>
             {account &&
               `${account.slice(0, 6)}...${account.slice(
                 account.length - 4,
@@ -51,8 +52,9 @@ export default function ConnectButton ({ handleOpenModal }: Props): JSX.Element 
           </Text>
           <Identicon />
         </Button>
-      </Box>)
-    : (<Button onClick={activateBrowserWallet}>
-        Connect your wallet
-      </Button>)
+      </Flex>)
+    : (
+    <Button display='flex' alignSelf='end' position='fixed' top='0' m='10' onClick={activateBrowserWallet}>
+      Connect your wallet
+    </Button>)
 }

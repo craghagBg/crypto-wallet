@@ -11,9 +11,9 @@ const root = ReactDOM.createRoot(
 )
 
 const config: Config = {
-  readOnlyChainId: Mainnet.chainId,
   readOnlyUrls: {
     [Mainnet.chainId]: getDefaultProvider('mainnet'),
+    56: ' https://bsc-dataseed.binance.org/',
     [Goerli.chainId]: getDefaultProvider('goerli')
   }
 }
