@@ -20,13 +20,13 @@ export default function ConnectButton ({ handleOpenModal }: Props): JSX.Element 
 
   return account
     ? (<Flex alignSelf='end' alignItems='center' background='gray.700' borderRadius='xl' position='fixed' top='0' py='0' m='10'>
-        <Flex px='3'>
-          <Text color='white' fontSize='md' mr='2'>
-            {(tokenBalance != null) && `${parseFloat(utils.formatEther(tokenBalance)).toFixed(2)} NEXO`}
-          </Text>
-          <Text color='white' fontSize='md'>
-            {(etherBalance != null) && `${parseFloat(utils.formatEther(etherBalance)).toFixed(3)} ${mainCurrency}`}
-          </Text>
+        <Flex>
+          {(tokenBalance != null) && <Text color='white' fontSize='md' mx='3'>
+            {`${parseFloat(utils.formatEther(tokenBalance)).toFixed(2)} NEXO`}
+          </Text>}
+          {(etherBalance != null) && <Text color='white' fontSize='md' mr='3'>
+            {`${parseFloat(utils.formatEther(etherBalance)).toFixed(3)} ${mainCurrency}`}
+          </Text>}
         </Flex>
          <Button
           onClick={handleOpenModal}
