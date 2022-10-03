@@ -41,5 +41,5 @@ export default function Dashboard (): ReactElement {
           </Table>
         </TableContainer>
       </Flex>)
-    : <Heading color='white' alignSelf='center'>Not available accounts</Heading>
+    : <Flex color='white' fontSize='xl' justifyContent='center'>Not available accounts</Flex>
 }
