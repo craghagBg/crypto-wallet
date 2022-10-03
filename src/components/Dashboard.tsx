@@ -43,5 +43,5 @@ export default function Dashboard (): ReactElement {
           </TableContainer>
         </Flex>)
       : <Flex flexDirection='column' alignItems='center' h='360px' justifyContent='center'><Spinner size='xl' /></Flex>
-    : <Flex color='white' fontSize='xl' justifyContent='center'>Not available accounts</Flex>
+    : <Flex color='white' fontSize='xl' flexDirection='column' alignItems='center' h='360px' justifyContent='center'>Not available accounts</Flex>
 }
