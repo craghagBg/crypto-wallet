@@ -5,9 +5,9 @@ import { useEthers, Mainnet } from '@usedapp/core'
 export default function Dashboard (): ReactElement {
   const { chainId } = useEthers()
 
-  return (<Flex alignSelf='start' justifyContent='start' alignItems='start' background='gray.700' borderRadius='xl' position='fixed' top='0' p='2' m='10'>
-    <Text color='white' fontSize='md'>
-    {(chainId === Mainnet.chainId) && 'Chain: Ethereum Mainnet'}
-    </Text>
-</Flex>)
+  return chainId === Mainnet.chainId
+    ? (<Flex alignSelf='start' justifyContent='start' alignItems='start' background='gray.700' borderRadius='xl' position='fixed' top='0' px='3' py='2' m='10'>
+    <Text color='white' fontSize='md'>Chain: Ethereum Mainnet</Text>
+  </Flex>)
+    : (<Text></Text>)
 }

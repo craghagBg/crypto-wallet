@@ -21,10 +21,10 @@ export default function ConnectButton ({ handleOpenModal }: Props): ReactElement
   return account
     ? (<Flex alignSelf='end' alignItems='center' background='gray.700' borderRadius='xl' position='fixed' top='0' py='0' m='10'>
       <Flex>
-        {(tokenBalance != null) && <Text color='white' fontSize='md' mx='3'>
+        {(tokenBalance != null) && <Text color='white' fontSize='md' ml='3'>
           {`${parseFloat(utils.formatEther(tokenBalance)).toFixed(2)} NEXO`}
         </Text>}
-        {(etherBalance != null) && <Text color='white' fontSize='md' mr='3'>
+        {(etherBalance != null) && <Text color='white' fontSize='md' mx='3'>
           {`${parseFloat(utils.formatEther(etherBalance)).toFixed(3)} ${mainCurrency}`}
         </Text>}
       </Flex>
