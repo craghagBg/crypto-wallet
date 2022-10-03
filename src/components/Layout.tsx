@@ -9,11 +9,11 @@ interface Props {
 export default function Layout ({ children }: Props): ReactElement {
   return (
     <Flex
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      h="100vh"
-      bg="gray.800"
+      flexDirection='column'
+      alignItems='center'
+      justifyContent='center'
+      h='100vh'
+      bg='gray.800'
     >
       {children}
     </Flex>

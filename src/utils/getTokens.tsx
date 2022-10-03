@@ -25,8 +25,8 @@ export const getTokens = async (account: string | undefined, setToken: { (value:
           address: token.contractAddress,
           balance: parseFloat(utils.formatEther(token.tokenBalance ?? 0)).toFixed(tokenInfo?.decimals ?? 0)
         })
-        setToken(reshapedTokens)
       }
     }
+    setToken(reshapedTokens)
   }
 }

@@ -1,5 +1,5 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react'
-import { Flex, TableContainer, Heading, Table, Thead, Tr, Th, Td, Tbody } from '@chakra-ui/react'
+import { Flex, TableContainer, Heading, Table, Thead, Tr, Th, Td, Tbody, Spinner } from '@chakra-ui/react'
 import { useEthers } from '@usedapp/core'
 import { getTokens } from '../utils'
 
@@ -24,22 +24,24 @@ export default function Dashboard (): ReactElement {
   }, [tokens])
 
   return account
-    ? (<Flex px='3' color='white' overflowY='auto' flexDirection='column' h='360px' background='gray.800' borderRadius='xl' py='2'>
-        <Heading size='lg' alignSelf='center'>Availble ERC-20 Tokens</Heading>
-        <TableContainer overflowY='auto' h='360px'>
-          <Table overflowY='auto'>
-            <Thead>
-              <Tr>
-                <Th>Name</Th>
-                <Th>Balance</Th>
-                <Th>symbol</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {showTokenList()}
-            </Tbody>
-          </Table>
-        </TableContainer>
-      </Flex>)
+    ? tokens?.length > 0
+      ? (<Flex px='3' color='white' overflowY='auto' flexDirection='column' h='360px' background='gray.800' borderRadius='xl' py='2'>
+          <Heading size='lg' alignSelf='center'>Availble ERC-20 Tokens</Heading>
+          <TableContainer overflowY='auto' h='360px'>
+            <Table overflowY='auto'>
+              <Thead>
+                <Tr>
+                  <Th>Name</Th>
+                  <Th>Balance</Th>
+                  <Th>symbol</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {showTokenList()}
+              </Tbody>
+            </Table>
+          </TableContainer>
+        </Flex>)
+      : <Flex flexDirection='column' alignItems='center' h='360px' justifyContent='center'><Spinner size='xl' /></Flex>
     : <Flex color='white' fontSize='xl' justifyContent='center'>Not available accounts</Flex>
 }
