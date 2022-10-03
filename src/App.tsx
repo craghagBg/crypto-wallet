@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { ChakraProvider, useDisclosure } from '@chakra-ui/react'
 import { Layout, ConnectButton, Container, AccountModal } from './components'
 
-export default function App (): JSX.Element {
+export default function App (): ReactElement {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (

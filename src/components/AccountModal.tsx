@@ -1,5 +1,5 @@
 // AccountModal.tsx
-import React from 'react'
+import React, { ReactElement } from 'react'
 import {
   Box,
   Button,
@@ -23,7 +23,7 @@ interface Props {
   onClose: any
 }
 
-export default function AccountModal ({ isOpen, onClose }: Props): JSX.Element {
+export default function AccountModal ({ isOpen, onClose }: Props): ReactElement {
   const { account, deactivate } = useEthers()
 
   function handleDeactivateAccount (): void {
@@ -33,26 +33,26 @@ export default function AccountModal ({ isOpen, onClose }: Props): JSX.Element {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered size='md'>
-    <ModalOverlay />
-    <ModalContent
+      <ModalOverlay />
+      <ModalContent
         background='gray.900'
         border='1px'
         borderStyle='solid'
         borderColor='gray.700'
         borderRadius='3xl'
-    >
+      >
         <ModalHeader color='white' px={4} fontSize='lg' fontWeight='medium'>
-        Account
+          Account
         </ModalHeader>
         <ModalCloseButton
-        color='white'
-        fontSize='sm'
-        _hover={{
-          color: 'whiteAlpha.700'
-        }}
+          color='white'
+          fontSize='sm'
+          _hover={{
+            color: 'whiteAlpha.700'
+          }}
         />
         <ModalBody pt={0} px={4}>
-        <Box
+          <Box
             borderRadius='3xl'
             border='1px'
             borderStyle='solid'
@@ -61,12 +61,12 @@ export default function AccountModal ({ isOpen, onClose }: Props): JSX.Element {
             pt={4}
             pb={2}
             mb={3}
-        >
+          >
             <Flex justifyContent='space-between' alignItems='center' mb={3}>
-            <Text color='gray.400' fontSize='sm'>
+              <Text color='gray.400' fontSize='sm'>
                 Connected with MetaMask
-            </Text>
-            <Button
+              </Text>
+              <Button
                 variant='outline'
                 size='sm'
                 borderColor='blue.800'
@@ -82,28 +82,28 @@ export default function AccountModal ({ isOpen, onClose }: Props): JSX.Element {
                   textDecoration: 'underline'
                 }}
                 onClick={handleDeactivateAccount}
-            >
+              >
                 Change
-            </Button>
+              </Button>
             </Flex>
             <Flex alignItems='center' mt={2} mb={4} lineHeight={1}>
-            <Identicon />
-            <Text
+              <Identicon />
+              <Text
                 color='white'
                 fontSize='xl'
                 fontWeight='semibold'
                 ml='2'
                 lineHeight='1.1'
-            >
+              >
                 {account &&
-                `${account.slice(0, 6)}...${account.slice(
+                  `${account.slice(0, 6)}...${account.slice(
                     account.length - 4,
                     account.length
-                )}`}
-            </Text>
+                  )}`}
+              </Text>
             </Flex>
             <Flex alignContent='center' m={3}>
-            <Button
+              <Button
                 variant='link'
                 color='gray.400'
                 fontWeight='normal'
@@ -112,11 +112,11 @@ export default function AccountModal ({ isOpen, onClose }: Props): JSX.Element {
                   textDecoration: 'none',
                   color: 'whiteAlpha.800'
                 }}
-            >
+              >
                 <CopyIcon mr={1} />
                 Copy Address
-            </Button>
-            <Link
+              </Button>
+              <Link
                 fontSize='sm'
                 display='flex'
                 alignItems='center'
@@ -128,12 +128,12 @@ export default function AccountModal ({ isOpen, onClose }: Props): JSX.Element {
                   color: 'whiteAlpha.800',
                   textDecoration: 'underline'
                 }}
-            >
+              >
                 <ExternalLinkIcon mr={1} />
                 View on Explorer
-            </Link>
+              </Link>
             </Flex>
-        </Box>
+          </Box>
         </ModalBody>
 
         <ModalFooter
@@ -143,16 +143,16 @@ export default function AccountModal ({ isOpen, onClose }: Props): JSX.Element {
           borderBottomRightRadius='3xl'
           p={6}
         >
-        <Text
+          <Text
             color='white'
             textAlign='left'
             fontWeight='medium'
             fontSize='md'
-        >
+          >
             Your transactions willl appear here...
-        </Text>
+          </Text>
         </ModalFooter>
-    </ModalContent>
+      </ModalContent>
     </Modal>
   )
 }

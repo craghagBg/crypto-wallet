@@ -1,5 +1,5 @@
 // Identicon.tsx
-import React, { useEffect, useRef } from 'react'
+import React, { ReactElement, useEffect, useRef } from 'react'
 import { useEthers } from '@usedapp/core'
 
 import Jazzicon from '@metamask/jazzicon'
@@ -12,7 +12,7 @@ const StyledIdenticon = styled.div`
   border-radius: 1.125rem;
   background-color: black;
 `
-export default function Identicon (): JSX.Element {
+export default function Identicon (): ReactElement {
   const ref = useRef<HTMLDivElement>()
   const { account } = useEthers()
 

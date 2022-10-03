@@ -1,12 +1,12 @@
 // Layout.tsx
-import React, { ReactNode } from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import { Flex } from '@chakra-ui/react'
 
 interface Props {
   children?: ReactNode
 }
 
-export default function Layout ({ children }: Props): JSX.Element {
+export default function Layout ({ children }: Props): ReactElement {
   return (
     <Flex
       flexDirection="column"
