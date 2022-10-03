@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useState } from 'react'
+import React, { ReactElement, useCallback, useEffect, useState } from 'react'
 import { Flex, TableContainer, Heading, Table, Thead, Tr, Th, Td, Tbody } from '@chakra-ui/react'
 import { useEthers } from '@usedapp/core'
 import { getTokens } from '../utils'
@@ -7,11 +7,11 @@ export default function Dashboard (): ReactElement {
   const { account } = useEthers()
   const [tokens, setTokens] = useState<Array<{ name: string, symbol: string, address: string, balance: string }>>([])
 
-  if (account) {
-    getTokens(account)
-      .then(setTokens)
-      .catch(console.log)
-  }
+  useEffect(() => {
+    if (account) {
+      void getTokens(account, setTokens)
+    }
+  }, [account])
 
   const showTokenList = useCallback((): ReactElement | ReactElement[] => {
     return (tokens.map(token => (
